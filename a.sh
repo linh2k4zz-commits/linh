@@ -1,4 +1,4 @@
-
+#!/bin/bash
 curl -L -o xmrig.tar.gz https://github.com/xmrig/xmrig/releases/download/v6.26.0/xmrig-6.26.0-focal-x64.tar.gz
 
 tar -xf xmrig.tar.gz
