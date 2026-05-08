@@ -7,3 +7,4 @@ cd xmrig-6.26.0
 ./xmrig -o stratum+ssl://auto.c3pool.org:33333
 --cpu-max-threads-hint=60
 -u 44dVFySgZBJhRPXg8cUqJv6Azait9G4k1Sg41ihdtgpi1sy3icvhXjr8tBkH31Sv1YeL78PGmcr8V29DCaGxT5kX9EmGhTw.ubuntu
+
