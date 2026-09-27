@@ -1,0 +1,44 @@
+import subprocess, re, time
+
+# Cài cloudflared
+subprocess.run(
+    "wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb "
+    "-O /tmp/cloudflared.deb && apt install -y /tmp/cloudflared.deb",
+    shell=True,
+    stdout=subprocess.DEVNULL,
+    stderr=subprocess.DEVNULL
+)
+
+# Cài ttyd
+subprocess.run(
+    "apt update -qq && apt install -y ttyd",
+    shell=True,
+    stdout=subprocess.DEVNULL,
+    stderr=subprocess.DEVNULL
+)
+
+# Chạy terminal web
+subprocess.Popen(
+    ["ttyd", "-p", "7681", "--writable", "bash"],
+    stdout=subprocess.DEVNULL,
+    stderr=subprocess.DEVNULL
+)
+
+time.sleep(2)
+
+# Chạy Cloudflare và lấy URL
+p = subprocess.Popen(
+    ["cloudflared", "tunnel", "--url", "http://127.0.0.1:7681"],
+    stdout=subprocess.PIPE,
+    stderr=subprocess.STDOUT,
+    text=True
+)
+
+for line in p.stdout:
+    match = re.search(r"https://[a-z0-9-]+\.trycloudflare\.com", line)
+    if match:
+        print(match.group(0))
+        break
+
+# Giữ tunnel chạy
+p.wait()
